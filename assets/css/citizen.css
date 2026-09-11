@@ -1,0 +1,598 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    background-color: #ebe9e4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #c06c64;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    color: #2a3a8f;
+}
+
+.hm1 {
+    margin-top: 10px;
+    text-align: center;
+    padding: 80px;
+}
+
+.h1-help span {
+    color: red;
+}
+
+.h1-help p {
+    margin-top: 13px;
+    color: rgb(137, 136, 136);
+}
+
+.ht-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ht-btn a {
+    display: inline-block;
+    font-weight: bold;
+    padding: 15px;
+    margin: 5px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.primary-btn {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.secondary-btn {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.primary-btn:hover {
+    background-color: darkred;
+    transform: scale(1.1);
+}
+
+.secondary-btn:hover {
+    background-color: #f0efef;
+    transform: scale(1.1);
+}
+
+.hm2 {
+    text-align: center;
+    padding: 20px;
+}
+
+.hm2 h2 {
+    margin-top: 110px;
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+
+.hm2-step {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+.hm2-step1,
+.hm2-step2,
+.hm2-step3 {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    margin-top: auto;
+}
+
+/* =========================
+   Login or Register
+========================= */
+
+nav {
+    display: flex;
+    gap: 5px;
+    border: 2px solid rgb(157, 173, 55);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+nav a {
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #ffffff;
+    color: #2a3a8f;
+    border: 2px solid #2a3a8f;
+    border-radius: 10px;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+form {
+    width: 100%;
+    max-width: 440px;
+    background-color: #fafaf8;
+    border: 1px solid #dddbd4;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+form h1 {
+    color: #2a3a8f;
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+form p {
+    color: #666666;
+    font-size: 15px;
+    margin-bottom: 24px;
+}
+
+.field {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #2b3a4f;
+}
+
+.field input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    outline-color: #2a3a8f;
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: #2a3a8f;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.auth-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666666;
+}
+
+.auth-footer a {
+    color: #2a3a8f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.summary {
+    order: -1;
+    width: 450px;
+    padding: 25px;
+    margin-bottom: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.summary h2 {
+    margin-top: 0;
+}
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.result-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.result-table td:first-child {
+    font-weight: bold;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    padding: 50px 5%;
+}
+
+.welcome {
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    margin: 0 0 10px;
+    color: #030b17;
+    font-size: 32px;
+}
+
+.welcome p {
+    color: #676363;
+    font-size: 17px;
+}
+
+.emergency {
+    background: rgba(203, 170, 139, 0.772);
+    border-left: 6px solid #160f0f;
+    padding: 25px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    margin-top: -25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.emergency h2 {
+    margin: 0 0 8px;
+    color: #dc3545;
+}
+
+.emergency p {
+    margin: 0;
+    color: #6b6969;
+}
+
+.primary-btn {
+    background: #dc3545;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    background: #b02a37;
+}
+
+.section-title {
+    margin-bottom: 30px;
+    margin-top: 60px;
+    color: #333;
+    margin-left: 20px;
+}
+
+.feature {
+    display: flex;
+    margin-top: -10px;
+    gap: 30px;
+    justify-content: center;
+}
+
+.feature-card {
+    background: white;
+    width: 30%;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin: 0 0 10px;
+}
+
+.feature-card h3 {
+    color: blue;
+    margin: 10px 0;
+}
+
+.feature-card p:last-child {
+    color: rgb(134, 128, 128);
+    font-size: 14px;
+}
+
+.Profile {
+    width: 450px;
+    margin: 50px auto 15px auto;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+/* =========================
+   EMERGENCY SERVICES 
+========================= */
+.servicesHub {
+    background-color: rgb(127, 170, 197)
+}
+
+.serviceNav a[href="login.html"] {
+    margin-left: auto;
+    color: #dc2626;
+    background-color: #fee2e2;
+}
+
+.serviceNav a[href="login.html"]:hover {
+    background-color: #dc2626;
+    color: #ffffff;
+}
+
+.early {
+    color: #2a2828;
+    margin: 20px 0 20px 30px;
+    font-size: 24px;
+}
+
+.container h1 {
+    margin-bottom: 10px;
+    color: #b02a37;
+}
+
+.container {
+    width: 86%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.container p {
+    color: #0b0a0a;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    margin-bottom: 30px;
+}
+
+.search-box input,
+.search-box select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 220px;
+}
+
+.search-box select {
+    min-width: 180px;
+}
+
+.search-box button {
+    border: none;
+    cursor: pointer;
+}
+
+#serviceResults {
+    margin-top: 40px;
+}
+
+.service-card {
+    background-color: rgb(21, 19, 19);
+    padding: 35px;
+    border-radius: 15px;
+}
+
+.service-card h3 {
+    color: white;
+    font-size: 25px;
+}
+
+.service-card p {
+    color: white;
+    font-size: 18px;
+}
+
+.service-card button {
+    padding: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* =========================
+   Emergency Request
+========================= */
+.containers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.containers h1 {
+    width: 100%;
+    max-width: 650px;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.containers form {
+    background-color: rgb(230, 178, 178);
+    max-width: 650px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.containers form input,
+.containers form select,
+.containers form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.containers form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Wheel Chairs */
+.cntrs {
+    width: 500px;
+    margin: 60px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cntrs h1 {
+    text-align: center;
+    color: #0d6efd;
+    margin-bottom: 30px;
+}
+
+.cntrs form p {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.radio-label {
+    margin-right: 20px;
+}
+
+.wheelchair-count-box {
+    margin-top: 25px;
+    padding: 18px;
+    background: #8b9eb8;
+    border-radius: 8px;
+}
+
+.wheelchair-count-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.wheelchair-count-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.injurydescription {
+    margin-top: 12px;
+    flex-direction: column;
+}
+
+.injurydescription textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.wheelchair-count-box,
+.injury-details-box {
+    display: none;
+    margin-top: 15px;
+}
+
+.toggle-yes:checked~.wheelchair-count-box,
+.toggle-yes:checked~.injury-details-box {
+    display: block;
+}
+
+#injuryForm textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 80px;
+}
