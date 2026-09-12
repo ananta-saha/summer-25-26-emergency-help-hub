@@ -2,33 +2,51 @@
 
 session_start();
 
-if (!isset($_SESSION["citizen_id"])) {
-    header("Location: login.php");
+require_once __DIR__ . "/../../model/citizen/CitizenModel.php";
+
+if(!isset($_SESSION["citizen_id"]))
+{
+    header("Location: ../auth/login.php");
+    exit();
+}
+
+if(!isset($_SESSION["emergency_request"]))
+{
+    header("Location: emergency-request.php");
     exit();
 }
 
 $wheelchair = "No";
 $wheelchairNumber = 0;
+$error = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["wheelchair"])) {
-        $wheelchair = $_POST["wheelchair"];
-    }
-    if (isset($_POST["wheelchairNumber"])) {
-        $wheelchairNumber = trim($_POST["wheelchairNumber"]);
-    }
-    if ($wheelchair == "Yes") {
-        if ($wheelchairNumber == "" || $wheelchairNumber < 1) {
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $wheelchair = $_POST["wheelchair"] ?? "No";
+
+    $wheelchairNumber = $_POST["wheelchairNumber"] ?? 0;
+
+
+    if($wheelchair == "Yes")
+    {
+        if($wheelchairNumber == "" || $wheelchairNumber < 1)
+        {
             $error = "Please enter the number of wheelchairs.";
-        } else {
+        }
+        else
+        {
             $_SESSION["wheelchair"] = "Yes";
             $_SESSION["wheelchairNumber"] = $wheelchairNumber;
+
             header("Location: injury.php");
             exit();
         }
-    } else {
+    }
+    else
+    {
         $_SESSION["wheelchair"] = "No";
         $_SESSION["wheelchairNumber"] = 0;
+
         header("Location: injury.php");
         exit();
     }

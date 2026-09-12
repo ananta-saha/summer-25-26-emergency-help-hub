@@ -4,114 +4,128 @@ session_start();
 
 require_once __DIR__ . "/../../model/citizen/CitizenModel.php";
 
-
-if (!isset($_SESSION["citizen_id"])) {
-    header("Location: login.php");
+if(!isset($_SESSION["citizen_id"]))
+{
+    header("Location: ../auth/login.php");
     exit();
 }
-if (!isset($_SESSION["emergency_request"])) {
+
+if(!isset($_SESSION["emergency_request"]))
+{
     header("Location: emergency-request.php");
     exit();
 }
 
 
-$injury = "No";
-$injuryLevel = $injuryDescription = "";
 $error = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $injury = isset($_POST["injury"])
-        ? trim($_POST["injury"])
-        : "No";
+$injury = "No";
+$injuryLevel = "";
+$injuryDescription = "";
 
-    $injuryLevel = isset($_POST["injuryLevel"])
-        ? trim($_POST["injuryLevel"])
-        : "";
 
-    $injuryDescription = isset($_POST["injuryDescription"])
-        ? trim($_POST["injuryDescription"])
-        : "";
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $injury = $_POST["injury"] ?? "No";
 
-    if ($injury == "Yes") {
-        if ($injuryLevel == "") {
-            $error = "Please select the injury level.";
-        } else {
-            $_SESSION["injury"] = "Yes";
-            $_SESSION["injuryLevel"] = $injuryLevel;
-            $_SESSION["injuryDescription"] = $injuryDescription;
+    $injuryLevel = $_POST["injuryLevel"] ?? "";
 
-            $request = $_SESSION["emergency_request"];
-            $wheelchair = isset($_SESSION["wheelchair"])
-                ? $_SESSION["wheelchair"]
-                : "No";
+    $injuryDescription = $_POST["injuryDescription"] ?? "";
 
-            $wheelchairNumber = isset($_SESSION["wheelchairNumber"])
-                ? $_SESSION["wheelchairNumber"]
-                : 0;
 
-            $saveResult = saveEmergencyRequest(
-                $_SESSION["citizen_id"],
-                $request["provider_id"],
-                $request["emService"],
-                $request["emergencyType"],
-                $request["people"],
-                $request["vehicles"],
-                $request["emergencyLocation"],
-                $request["details"],
-                $wheelchair,
-                $wheelchairNumber,
-                "Yes",
-                $injuryLevel,
-                $injuryDescription
-            );
+    $request = $_SESSION["emergency_request"];
 
-            if ($saveResult["success"]) {
-                $_SESSION["request_id"] = $saveResult["request_id"];
-                header("Location: request-status.php");
-                exit();
-            } else {
-                $error = $saveResult["error"];
-            }
+
+    if($injury == "Yes" && $injuryLevel == "")
+    {
+        $error = "Please select injury level.";
+    }
+    else
+    {
+
+        $wheelchairRequired = 0;
+        $wheelchairCount = 0;
+
+
+        if(isset($_SESSION["wheelchair"]) && $_SESSION["wheelchair"] == "Yes")
+        {
+            $wheelchairRequired = 1;
+            $wheelchairCount = $_SESSION["wheelchairNumber"];
         }
-    } else {
-        $_SESSION["injury"] = "No";
-        $_SESSION["injuryLevel"] = "";
-        $_SESSION["injuryDescription"] = "";
-        $request = $_SESSION["emergency_request"];
 
-        $wheelchair = isset($_SESSION["wheelchair"])
-            ? $_SESSION["wheelchair"]
-            : "No";
 
-        $wheelchairNumber = isset($_SESSION["wheelchairNumber"])
-            ? $_SESSION["wheelchairNumber"]
-            : 0;
+
+        $injuryPresent = 0;
+
+
+        if($injury == "Yes")
+        {
+            $injuryPresent = 1;
+        }
+
+
 
         $saveResult = saveEmergencyRequest(
+
             $_SESSION["citizen_id"],
+
             $request["provider_id"],
-            $request["emService"],
-            $request["emergencyType"],
-            $request["people"],
-            $request["vehicles"],
-            $request["emergencyLocation"],
+
+            $request["service_type"],
+
+            $request["emergency_type"],
+
+            $request["people_count"],
+
+            $request["vehicles_requested"],
+
+            $request["location"],
+
             $request["details"],
-            $wheelchair,
-            $wheelchairNumber,
-            "No",
-            "",
-            ""
+
+            $wheelchairRequired,
+
+            $wheelchairCount,
+
+            $injuryPresent,
+
+            $injuryLevel,
+
+            $injuryDescription
+
         );
 
-        if ($saveResult["success"]) {
+
+
+        if($saveResult["success"])
+        {
+
             $_SESSION["request_id"] = $saveResult["request_id"];
+
+
+            unset($_SESSION["emergency_request"]);
+
+            unset($_SESSION["wheelchair"]);
+
+            unset($_SESSION["wheelchairNumber"]);
+
+
+
             header("Location: request-status.php");
+
             exit();
-        } else {
+
+        }
+        else
+        {
             $error = $saveResult["error"];
         }
+
     }
+
 }
 
+
 require_once __DIR__ . "/../../view/citizen/injury.php";
+
 ?>
