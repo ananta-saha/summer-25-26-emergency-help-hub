@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+
+    margin: 0;
+    height: 100vh;
+
+    background: linear-gradient(135deg,
+            #0f172a,
+            #2563eb);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.login-card {
+
+    width: 380px;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+.login-card h1 {
+
+    text-align: center;
+
+    color: #2563eb;
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+
+}
+
+
+
+.login-card h2 {
+
+    text-align: center;
+
+    color: #333;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 6px;
+
+    font-weight: bold;
+
+}
+
+
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    border: 1px solid #ccc;
+
+    font-size: 15px;
+
+}
+
+
+
+input:focus,
+select:focus {
+
+    outline: none;
+
+    border-color: #2563eb;
+
+}
+
+
+
+button {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+
+button:hover {
+
+    background: #1d4ed8;
+
+}
+
+
+
+.error {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+}
