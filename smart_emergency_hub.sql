@@ -242,3 +242,116 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- ============================================
+-- ORGANIZATION TABLE
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS organizations (
+    organization_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    organization_name VARCHAR(150) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    address TEXT DEFAULT NULL,
+    status ENUM('Active', 'Inactive') NOT NULL DEFAULT 'Active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+-- ============================================
+-- ORGANIZATION EMERGENCY SERVICES
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS organization_services (
+    service_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    organization_id INT UNSIGNED NOT NULL,
+    service_name VARCHAR(150) NOT NULL,
+    service_type VARCHAR(50) NOT NULL,
+    hotline VARCHAR(30) NOT NULL,
+    coverage_area VARCHAR(150) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_org_service_organization
+        FOREIGN KEY (organization_id)
+        REFERENCES organizations(organization_id)
+        ON DELETE CASCADE
+);
+
+
+-- ============================================
+-- ORGANIZATION PROVIDERS
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS organization_providers (
+    organization_provider_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    organization_id INT UNSIGNED NOT NULL,
+
+    provider_name VARCHAR(150) NOT NULL,
+    provider_email VARCHAR(100) NOT NULL,
+    provider_contact VARCHAR(20) NOT NULL,
+
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+
+    provider_type VARCHAR(50) NOT NULL,
+
+    status ENUM('Active', 'Inactive')
+        NOT NULL DEFAULT 'Active',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_org_provider_organization
+        FOREIGN KEY (organization_id)
+        REFERENCES organizations(organization_id)
+        ON DELETE CASCADE
+);
+
+
+-- ============================================
+-- ORGANIZATION FUND / DONATION
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS organization_donations (
+    donation_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+
+    organization_id INT UNSIGNED NOT NULL,
+
+    donor_name VARCHAR(150) NOT NULL,
+
+    amount DECIMAL(12,2) NOT NULL,
+
+    purpose VARCHAR(255) NOT NULL,
+
+    received_at DATE NOT NULL,
+
+    status ENUM('Received', 'Allocated')
+        NOT NULL DEFAULT 'Received',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_org_donation_organization
+        FOREIGN KEY (organization_id)
+        REFERENCES organizations(organization_id)
+        ON DELETE CASCADE
+);
+INSERT INTO organizations
+(
+    organization_name,
+    email,
+    password,
+    phone,
+    address,
+    status
+)
+VALUES
+(
+    'Emergency Help Organization',
+    'organization@gmail.com',
+    '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llCj5j0gk8V5h3xQ1hJm',
+    '01700000010',
+    'Dhaka, Bangladesh',
+    'Active'
+);
