@@ -12,20 +12,16 @@ if(!isset($_SESSION["citizen_id"]))
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| Check if coming from Emergency Request
-|--------------------------------------------------------------------------
-*/
-
-$fromEmergency = isset($_SESSION["emergency_request"]);
-
+if(!isset($_SESSION["emergency_request"]))
+{
+    header("Location: emergency-request.php");
+    exit();
+}
 
 
 $wheelchair = "No";
 $wheelchairNumber = 0;
 $error = "";
-
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -34,7 +30,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $wheelchair = $_POST["wheelchair"] ?? "No";
 
     $wheelchairNumber = $_POST["wheelchairNumber"] ?? 0;
-
 
 
     if($wheelchair == "Yes")
@@ -53,17 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION["wheelchairNumber"] = $wheelchairNumber;
 
 
-
-            if($fromEmergency)
-            {
-                // Continue emergency request process
-                header("Location: injury.php");
-            }
-            else
-            {
-                // Direct wheelchair dashboard
-                header("Location: wheelchair-dashboard.php");
-            }
+            header("Location: injury.php");
 
             exit();
 
@@ -80,23 +65,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $_SESSION["wheelchairNumber"] = 0;
 
 
-
-        if($fromEmergency)
-        {
-            header("Location: injury.php");
-        }
-        else
-        {
-            header("Location: wheelchair-dashboard.php");
-        }
-
+        header("Location: injury.php");
 
         exit();
 
     }
 
 }
-
 
 
 require_once __DIR__ . "/../../view/citizen/wheelchair.php";

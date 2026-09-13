@@ -4,17 +4,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Injury Information</title>
+
 <link rel="stylesheet" href="../../assets/css/citizen.css">
+
 </head>
+
 
 <body class="WheelchairHub">
 
+
 <h2 class="early">Emergency Help Hub</h2>
+
 
 <main class="cntrs">
 
+
 <h1>Injury Information</h1>
+
 
 <?php if($error != ""): ?>
 
@@ -33,10 +41,10 @@ Is there any injury?
 </p>
 
 
-<input 
-type="radio" 
-id="injuryNo" 
-name="injury" 
+<input
+type="radio"
+id="injuryNo"
+name="injury"
 value="No"
 <?= ($injury == "No") ? "checked" : ""; ?>
 >
@@ -46,10 +54,10 @@ No
 </label>
 
 
-<input 
-type="radio" 
-id="injuryYes" 
-name="injury" 
+<input
+type="radio"
+id="injuryYes"
+name="injury"
 value="Yes"
 <?= ($injury == "Yes") ? "checked" : ""; ?>
 >
@@ -70,23 +78,23 @@ Injury Level
 
 <select id="injuryLevel" name="injuryLevel">
 
-<option value="" disabled selected>
+<option value="" <?= ($injuryLevel == "") ? "selected" : ""; ?>>
 Select Injury Level
 </option>
 
-<option value="Minor" <?= ($injuryLevel=="Minor")?"selected":""; ?>>
+<option value="Minor" <?= ($injuryLevel == "Minor") ? "selected" : ""; ?>>
 Minor
 </option>
 
-<option value="Moderate" <?= ($injuryLevel=="Moderate")?"selected":""; ?>>
+<option value="Moderate" <?= ($injuryLevel == "Moderate") ? "selected" : ""; ?>>
 Moderate
 </option>
 
-<option value="Severe" <?= ($injuryLevel=="Severe")?"selected":""; ?>>
+<option value="Severe" <?= ($injuryLevel == "Severe") ? "selected" : ""; ?>>
 Severe
 </option>
 
-<option value="Critical" <?= ($injuryLevel=="Critical")?"selected":""; ?>>
+<option value="Critical" <?= ($injuryLevel == "Critical") ? "selected" : ""; ?>>
 Critical
 </option>
 
@@ -99,8 +107,8 @@ Injury Description
 </label>
 
 
-<textarea 
-id="injuryDescription" 
+<textarea
+id="injuryDescription"
 name="injuryDescription"
 placeholder="Describe the injury"><?= htmlspecialchars($injuryDescription); ?></textarea>
 
@@ -111,9 +119,11 @@ placeholder="Describe the injury"><?= htmlspecialchars($injuryDescription); ?></
 
 <div class="btnss">
 
+
 <button type="submit" class="primary-btn">
 Submit Information
 </button>
+
 
 </div>
 
@@ -124,6 +134,7 @@ Submit Information
 </main>
 
 
+
 <footer>
 
 <p>
@@ -132,6 +143,32 @@ Submit Information
 
 </footer>
 
+<script>
 
+const injuryYes = document.getElementById("injuryYes");
+const injuryNo = document.getElementById("injuryNo");
+
+const injuryDetails = document.querySelector(".injury-details-box");
+
+function showInjuryDetails()
+{
+    if(injuryYes.checked)
+    {
+        injuryDetails.style.display = "block";
+    }
+    else
+    {
+        injuryDetails.style.display = "none";
+    }
+}
+
+injuryYes.addEventListener("change", showInjuryDetails);
+
+injuryNo.addEventListener("change", showInjuryDetails);
+
+showInjuryDetails();
+
+</script>
 </body>
+
 </html>

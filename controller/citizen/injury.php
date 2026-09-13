@@ -19,13 +19,11 @@ if(!isset($_SESSION["emergency_request"]))
 }
 
 
-
 $error = "";
 
 $injury = "No";
 $injuryLevel = "";
 $injuryDescription = "";
-
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -38,25 +36,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $injuryDescription = $_POST["injuryDescription"] ?? "";
 
 
-
     $request = $_SESSION["emergency_request"];
 
 
+    /*
+        If injury is Yes, injury level is required
+    */
 
     if($injury == "Yes" && $injuryLevel == "")
     {
         $error = "Please select injury level.";
     }
 
-
     else
     {
-
 
         $wheelchairRequired = 0;
 
         $wheelchairCount = 0;
-
 
 
         if(
@@ -73,36 +70,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         }
 
 
-
-
         $injuryPresent = 0;
-
 
 
         if($injury == "Yes")
         {
-
             $injuryPresent = 1;
-
         }
-
-
 
 
         /*
             Save request for all available providers
         */
 
-
         $saveSuccess = false;
 
         $firstRequestId = null;
 
 
-
         foreach($request["providers"] ?? [] as $provider)
         {
-
 
             $saveResult = saveEmergencyRequest(
 
@@ -139,13 +126,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             );
 
 
-
-
             if($saveResult["success"])
             {
 
                 $saveSuccess = true;
-
 
 
                 if($firstRequestId == null)
@@ -155,19 +139,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
             }
 
-
         }
-
-
-
 
 
         if($saveSuccess)
         {
 
-
             $_SESSION["request_id"] = $firstRequestId;
-
 
 
             unset($_SESSION["emergency_request"]);
@@ -177,14 +155,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             unset($_SESSION["wheelchairNumber"]);
 
 
-
-
             header("Location: request-status.php");
 
             exit();
 
         }
-
 
         else
         {
@@ -196,7 +171,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
 }
-
 
 
 require_once __DIR__ . "/../../view/citizen/injury.php";
