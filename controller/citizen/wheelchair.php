@@ -5,20 +5,17 @@ session_start();
 require_once __DIR__ . "/../../model/citizen/CitizenModel.php";
 
 
-if(!isset($_SESSION["citizen_id"]))
-{
-    header("Location: ../auth/login.php");
-    exit();
-}
-
-
 /*
 |--------------------------------------------------------------------------
-| Check if coming from Emergency Request
+| Check Citizen Login
 |--------------------------------------------------------------------------
 */
 
-$fromEmergency = isset($_SESSION["emergency_request"]);
+if(!isset($_SESSION["citizen_id"]))
+{
+    header("Location: /summer-25-26-emergency-help-hub/controller/auth/login.php");
+    exit();
+}
 
 
 
@@ -28,6 +25,12 @@ $error = "";
 
 
 
+/*
+|--------------------------------------------------------------------------
+| Handle Submit
+|--------------------------------------------------------------------------
+*/
+
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
 
@@ -36,6 +39,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $wheelchairNumber = $_POST["wheelchairNumber"] ?? 0;
 
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Yes
+    |--------------------------------------------------------------------------
+    */
 
     if($wheelchair == "Yes")
     {
@@ -49,21 +58,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         {
 
             $_SESSION["wheelchair"] = "Yes";
-
             $_SESSION["wheelchairNumber"] = $wheelchairNumber;
 
 
-
-            if($fromEmergency)
-            {
-                // Continue emergency request process
-                header("Location: injury.php");
-            }
-            else
-            {
-                // Direct wheelchair dashboard
-                header("Location: wheelchair-dashboard.php");
-            }
+            header(
+                "Location: /summer-25-26-emergency-help-hub/controller/citizen/injury.php"
+            );
 
             exit();
 
@@ -72,24 +72,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | No
+    |--------------------------------------------------------------------------
+    */
+
     else
     {
 
         $_SESSION["wheelchair"] = "No";
-
         $_SESSION["wheelchairNumber"] = 0;
 
 
-
-        if($fromEmergency)
-        {
-            header("Location: injury.php");
-        }
-        else
-        {
-            header("Location: wheelchair-dashboard.php");
-        }
-
+        header(
+            "Location: /summer-25-26-emergency-help-hub/controller/citizen/injury.php"
+        );
 
         exit();
 

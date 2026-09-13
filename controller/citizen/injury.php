@@ -5,11 +5,13 @@ session_start();
 require_once __DIR__ . "/../../model/citizen/CitizenModel.php";
 
 
+
 if(!isset($_SESSION["citizen_id"]))
 {
     header("Location: ../auth/login.php");
     exit();
 }
+
 
 
 if(!isset($_SESSION["emergency_request"]))
@@ -28,6 +30,7 @@ $injuryDescription = "";
 
 
 
+
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
 
@@ -43,14 +46,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
+
     if($injury == "Yes" && $injuryLevel == "")
     {
-        $error = "Please select injury level.";
-    }
 
+        $error = "Please select injury level.";
+
+    }
 
     else
     {
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Wheelchair Information
+        |--------------------------------------------------------------------------
+        */
 
 
         $wheelchairRequired = 0;
@@ -60,8 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
         if(
-            isset($_SESSION["wheelchair"]) 
-            && 
+            isset($_SESSION["wheelchair"]) &&
             $_SESSION["wheelchair"] == "Yes"
         )
         {
@@ -75,8 +86,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
-        $injuryPresent = 0;
 
+        /*
+        |--------------------------------------------------------------------------
+        | Injury Information
+        |--------------------------------------------------------------------------
+        */
+
+
+        $injuryPresent = 0;
 
 
         if($injury == "Yes")
@@ -89,84 +107,58 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
+
         /*
-            Save request for all available providers
+        |--------------------------------------------------------------------------
+        | Save Emergency Request
+        |--------------------------------------------------------------------------
         */
 
 
-        $saveSuccess = false;
+        $saveResult = saveEmergencyRequest(
 
-        $firstRequestId = null;
+            $_SESSION["citizen_id"],
+
+            $request["provider_id"],
+
+            $request["service_type"],
+
+            $request["emergency_type"],
+
+            $request["people_count"],
+
+            $request["vehicles_requested"],
+
+            $request["location"],
+
+            $request["latitude"],
+
+            $request["longitude"],
+
+            $request["details"],
+
+            $wheelchairRequired,
+
+            $wheelchairCount,
+
+            $injuryPresent,
+
+            $injuryLevel,
+
+            $injuryDescription
+
+        );
 
 
 
-        foreach($request["providers"] ?? [] as $provider)
+
+
+
+        if($saveResult["success"])
         {
 
 
-            $saveResult = saveEmergencyRequest(
-
-                $_SESSION["citizen_id"],
-
-                $provider["provider_id"],
-
-                $request["service_type"],
-
-                $request["emergency_type"],
-
-                $request["people_count"],
-
-                $request["vehicles_requested"],
-
-                $request["location"],
-
-                $request["latitude"],
-
-                $request["longitude"],
-
-                $request["details"],
-
-                $wheelchairRequired,
-
-                $wheelchairCount,
-
-                $injuryPresent,
-
-                $injuryLevel,
-
-                $injuryDescription
-
-            );
-
-
-
-
-            if($saveResult["success"])
-            {
-
-                $saveSuccess = true;
-
-
-
-                if($firstRequestId == null)
-                {
-                    $firstRequestId = $saveResult["request_id"];
-                }
-
-            }
-
-
-        }
-
-
-
-
-
-        if($saveSuccess)
-        {
-
-
-            $_SESSION["request_id"] = $firstRequestId;
+            $_SESSION["request_id"] = $saveResult["request_id"];
 
 
 
@@ -179,23 +171,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
+
             header("Location: request-status.php");
 
             exit();
 
-        }
 
+        }
 
         else
         {
 
-            $error = "Failed to create emergency request.";
+            $error = $saveResult["error"];
 
         }
+
+
 
     }
 
 }
+
+
 
 
 
