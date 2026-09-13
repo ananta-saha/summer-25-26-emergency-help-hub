@@ -16,6 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = findUserByRole($email, $role);
 
 
+
+
     if ($user) {
 
 
@@ -50,6 +52,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             }
 
+
+            else if ($role == "admin") {
+
+
+              $_SESSION["admin_id"] = $user["id"];
+
+              $_SESSION["name"] = $user["name"];
+
+
+              header("Location: ../../view/admin/dashboard.php");
+
+              exit();
+
+
+            }
 
         }
 

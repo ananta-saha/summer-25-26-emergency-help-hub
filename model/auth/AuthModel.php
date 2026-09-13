@@ -41,6 +41,25 @@ function findUserByRole($email, $role)
 
     }
 
+   else if ($role == "admin") {
+
+
+    $stmt = mysqli_prepare(
+        $conn,
+        "SELECT 
+            id,
+            name,
+            email,
+            password
+         FROM admins
+         WHERE email = ?"
+    );
+
+
+}
+
+
+
 
     else {
 
