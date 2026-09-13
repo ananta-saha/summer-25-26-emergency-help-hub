@@ -19,6 +19,7 @@ if(!isset($_GET["id"]) || !isset($_GET["status"]))
 }
 
 
+
 $providerId = $_SESSION["provider_id"];
 
 $requestId = (int)$_GET["id"];
@@ -28,15 +29,18 @@ $status = trim($_GET["status"]);
 
 
 $allowedStatus = [
+
     "Accepted",
     "Rejected",
     "Completed"
+
 ];
 
 
-if(!in_array($status, $allowedStatus))
+
+if(!in_array($status,$allowedStatus))
 {
-    echo "Invalid status: ".$status;
+    echo "Invalid status";
     exit();
 }
 
@@ -45,7 +49,8 @@ if(!in_array($status, $allowedStatus))
 
 $result = updateRequestStatus(
     $requestId,
-    $status
+    $status,
+    $providerId
 );
 
 
@@ -61,10 +66,12 @@ if(!$result)
 
 if($status == "Accepted")
 {
+
     updateProviderAvailability(
         $providerId,
         "Busy"
     );
+
 }
 
 
@@ -72,10 +79,12 @@ if($status == "Accepted")
 
 if($status == "Completed")
 {
+
     updateProviderAvailability(
         $providerId,
         "Available"
     );
+
 }
 
 

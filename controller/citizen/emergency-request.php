@@ -19,6 +19,9 @@ $vehicles = "";
 $emergencyLocation = "";
 $details = "";
 
+$latitude = "";
+$longitude = "";
+
 $error = "";
 
 
@@ -44,6 +47,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $emergencyLocation = trim($_POST["emergencyLocation"] ?? "");
 
     $details = trim($_POST["details"] ?? "");
+
+
+    // GPS DATA
+
+    $latitude = trim($_POST["latitude"] ?? "");
+
+    $longitude = trim($_POST["longitude"] ?? "");
 
 
 
@@ -72,21 +82,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $error = "Please enter emergency location.";
     }
 
+    elseif($latitude == "" || $longitude == "")
+    {
+        $error = "Please allow location access.";
+    }
+
 
     else
     {
 
         /*
-        Find available provider
+        Find nearest provider within range
         */
 
-        $providerId = findNearestProvider($emService);
+        $providerId = findNearestProvider(
+            $emService,
+            $latitude,
+            $longitude
+        );
 
 
 
         if(!$providerId)
         {
-            $error = "No available provider found.";
+            $error = "No available provider found within your area.";
         }
 
         else
@@ -105,6 +124,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 "vehicles_requested" => $vehicles,
 
                 "location" => $emergencyLocation,
+
+                "latitude" => $latitude,
+
+                "longitude" => $longitude,
 
                 "details" => $details,
 

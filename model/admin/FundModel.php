@@ -1,83 +1,60 @@
 <?php
 
-
 require_once "../../config/db.php";
 
 
-
-
-// Get all funds
+// Get all funds/donations
 
 function getAllFunds()
 {
-
     global $conn;
-
 
     $sql = "
     SELECT *
-    FROM funds
-    ORDER BY id DESC
+    FROM organization_donations
+    ORDER BY donation_id DESC
     ";
 
-
     return mysqli_query($conn,$sql);
-
 }
 
 
 
 
-
-
-
-// Update fund status
+// Update donation status
 
 function updateFundStatus($id,$status)
 {
-
     global $conn;
 
-
     $sql = "
-    UPDATE funds
+    UPDATE organization_donations
 
     SET status='$status'
 
-    WHERE id=$id
+    WHERE donation_id=$id
     ";
 
-
     return mysqli_query($conn,$sql);
-
 }
 
 
 
 
-
-
-
-
-// Delete fund
+// Delete donation
 
 function deleteFund($id)
 {
-
     global $conn;
 
-
     $sql = "
-    DELETE FROM funds
+    DELETE FROM organization_donations
 
-    WHERE id=$id
+    WHERE donation_id=$id
     ";
 
-
     return mysqli_query($conn,$sql);
-
 }
-
 
 
 ?>

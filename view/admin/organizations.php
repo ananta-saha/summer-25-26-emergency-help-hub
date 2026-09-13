@@ -14,7 +14,6 @@ if(!isset($_SESSION["admin_id"]))
 
 $organizations = getAllOrganizations();
 
-
 ?>
 
 
@@ -63,8 +62,6 @@ onkeyup="searchTable()">
 
 <th>Address</th>
 
-<th>Type</th>
-
 <th>Status</th>
 
 <th>Action</th>
@@ -86,7 +83,7 @@ onkeyup="searchTable()">
 
 <td>
 
-<?= $row["id"] ?>
+<?= $row["organization_id"] ?>
 
 </td>
 
@@ -94,7 +91,7 @@ onkeyup="searchTable()">
 
 <td>
 
-<?= $row["name"] ?>
+<?= $row["organization_name"] ?>
 
 </td>
 
@@ -126,14 +123,6 @@ onkeyup="searchTable()">
 
 <td>
 
-<?= $row["type"] ?>
-
-</td>
-
-
-
-<td>
-
 <?= $row["status"] ?>
 
 </td>
@@ -144,7 +133,7 @@ onkeyup="searchTable()">
 <td>
 
 
-<a href="edit_organization.php?id=<?= $row["id"] ?>">
+<a href="edit_organization.php?id=<?= $row["organization_id"] ?>">
 
 <button>
 Edit
@@ -156,7 +145,7 @@ Edit
 
 
 <a 
-href="../../controller/admin/OrganizationController.php?delete=<?= $row["id"] ?>"
+href="../../controller/admin/OrganizationController.php?delete=<?= $row["organization_id"] ?>"
 onclick="return confirm('Delete this organization?')">
 
 <button>
@@ -177,7 +166,7 @@ Delete
 
 
 
-<a href="../../controller/admin/OrganizationController.php?id=<?= $row["id"] ?>&status=Approved">
+<a href="../../controller/admin/OrganizationController.php?id=<?= $row["organization_id"] ?>&status=Approved">
 
 
 <button>
@@ -192,7 +181,7 @@ Approve
 
 
 
-<a href="../../controller/admin/OrganizationController.php?id=<?= $row["id"] ?>&status=Rejected">
+<a href="../../controller/admin/OrganizationController.php?id=<?= $row["organization_id"] ?>&status=Rejected">
 
 
 <button>

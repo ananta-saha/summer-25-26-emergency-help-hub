@@ -3,76 +3,51 @@
 require_once "../../config/db.php";
 
 
-
 // Get all providers
-
 function getAllProviders()
 {
-
     global $conn;
 
-
-    $sql = "SELECT * FROM service_providers ORDER BY id DESC";
-
+    $sql = "SELECT * FROM service_providers ORDER BY provider_id DESC";
 
     return mysqli_query($conn,$sql);
-
 }
-
-
-
-
 
 
 // Get single provider by ID
-
 function getProviderById($id)
 {
-
     global $conn;
 
-
     $sql = "
-    SELECT * 
+    SELECT *
     FROM service_providers
-    WHERE id=$id
+    WHERE provider_id=$id
     ";
-
 
     $result = mysqli_query($conn,$sql);
 
-
     return mysqli_fetch_assoc($result);
-
 }
 
 
-
-
-
-
 // Add provider
-
 function addProvider($name,$email,$phone,$service_type,$location)
 {
-
     global $conn;
-
-
 
     $sql = "
     INSERT INTO service_providers
     (
-        name,
+        provider_name,
         email,
         phone,
         service_type,
-        location,
+        address,
         status
     )
 
     VALUES
-
     (
         '$name',
         '$email',
@@ -83,101 +58,61 @@ function addProvider($name,$email,$phone,$service_type,$location)
     )
     ";
 
-
-
     return mysqli_query($conn,$sql);
-
 }
 
 
-
-
-
-
-
 // Update provider
-
 function updateProvider($id,$name,$email,$phone,$service_type,$location)
 {
-
     global $conn;
-
-
 
     $sql = "
     UPDATE service_providers
 
     SET
 
-    name='$name',
+    provider_name='$name',
     email='$email',
     phone='$phone',
     service_type='$service_type',
-    location='$location'
+    address='$location'
 
-
-    WHERE id=$id
+    WHERE provider_id=$id
     ";
 
-
-
     return mysqli_query($conn,$sql);
-
 }
-
-
-
-
-
-
 
 
 // Delete provider
-
 function deleteProvider($id)
 {
-
     global $conn;
-
 
     $sql = "
     DELETE FROM service_providers
-    WHERE id=$id
+    WHERE provider_id=$id
     ";
 
-
     return mysqli_query($conn,$sql);
-
 }
 
 
-
-
-
-
-
-
 // Approve / Reject provider
-
 function updateProviderStatus($id,$status)
 {
-
     global $conn;
-
 
     $sql = "
     UPDATE service_providers
 
     SET status='$status'
 
-    WHERE id=$id
+    WHERE provider_id=$id
     ";
 
-
     return mysqli_query($conn,$sql);
-
 }
-
-
 
 ?>

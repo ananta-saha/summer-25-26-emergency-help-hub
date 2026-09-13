@@ -2,7 +2,6 @@
 
 session_start();
 
-
 require_once "../../model/admin/ProviderManagementModel.php";
 
 
@@ -13,18 +12,14 @@ if(!isset($_SESSION["admin_id"]))
 }
 
 
-
 $providers = getAllProviders();
 
-
 ?>
-
 
 
 <h1>
 Manage Service Providers
 </h1>
-
 
 
 <a href="add_provider.php">
@@ -36,9 +31,7 @@ Add Provider
 </a>
 
 
-
 <br><br>
-
 
 
 <input 
@@ -50,7 +43,6 @@ onkeyup="searchTable()">
 
 
 <br><br>
-
 
 
 
@@ -75,7 +67,6 @@ onkeyup="searchTable()">
 
 <th>Action</th>
 
-
 </tr>
 
 
@@ -92,7 +83,7 @@ onkeyup="searchTable()">
 
 <td>
 
-<?= $row["id"] ?>
+<?= $row["provider_id"] ?>
 
 </td>
 
@@ -100,7 +91,7 @@ onkeyup="searchTable()">
 
 <td>
 
-<?= $row["name"] ?>
+<?= $row["provider_name"] ?>
 
 </td>
 
@@ -132,7 +123,7 @@ onkeyup="searchTable()">
 
 <td>
 
-<?= $row["location"] ?>
+<?= $row["address"] ?>
 
 </td>
 
@@ -150,8 +141,7 @@ onkeyup="searchTable()">
 <td>
 
 
-
-<a href="edit_provider.php?id=<?= $row["id"] ?>">
+<a href="edit_provider.php?id=<?= $row["provider_id"] ?>">
 
 <button>
 
@@ -166,7 +156,7 @@ Edit
 
 
 <a 
-href="../../controller/admin/ProviderController.php?delete=<?= $row["id"] ?>"
+href="../../controller/admin/ProviderController.php?delete=<?= $row["provider_id"] ?>"
 onclick="return confirm('Delete this provider?')">
 
 
@@ -190,7 +180,7 @@ Delete
 
 
 
-<a href="../../controller/admin/ProviderController.php?id=<?= $row["id"] ?>&status=Approved">
+<a href="../../controller/admin/ProviderController.php?id=<?= $row["provider_id"] ?>&status=Approved">
 
 
 <button>
@@ -206,7 +196,7 @@ Approve
 
 
 
-<a href="../../controller/admin/ProviderController.php?id=<?= $row["id"] ?>&status=Rejected">
+<a href="../../controller/admin/ProviderController.php?id=<?= $row["provider_id"] ?>&status=Rejected">
 
 
 <button>

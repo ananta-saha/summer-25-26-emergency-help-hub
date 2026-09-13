@@ -41,7 +41,7 @@ Login
 <?php if(isset($error) && $error!=""): ?>
 
 <p class="error">
-<?= htmlspecialchars($error) ?>
+<?= htmlspecialchars($error); ?>
 </p>
 
 <?php endif; ?>
@@ -125,6 +125,22 @@ Login
 
 
 </form>
+
+
+
+<!-- Signup Section -->
+
+<div class="signup-link">
+
+<p>
+Don't have an account?
+</p>
+
+<a href="../../controller/auth/register.php">
+Create Account
+</a>
+
+</div>
 
 
 

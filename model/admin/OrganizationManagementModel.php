@@ -9,11 +9,10 @@ function getAllOrganizations()
 {
     global $conn;
 
-    $sql = "SELECT * FROM organizations ORDER BY id DESC";
+    $sql = "SELECT * FROM organizations ORDER BY organization_id DESC";
 
     return mysqli_query($conn,$sql);
 }
-
 
 
 // Get single organization
@@ -22,12 +21,10 @@ function getOrganizationById($id)
 {
     global $conn;
 
-
     $stmt=mysqli_prepare(
         $conn,
-        "SELECT * FROM organizations WHERE id=?"
+        "SELECT * FROM organizations WHERE organization_id=?"
     );
-
 
     mysqli_stmt_bind_param(
         $stmt,
@@ -35,47 +32,39 @@ function getOrganizationById($id)
         $id
     );
 
-
     mysqli_stmt_execute($stmt);
 
-
     $result=mysqli_stmt_get_result($stmt);
-
 
     return mysqli_fetch_assoc($result);
 
 }
 
 
-
-
 // Add organization
 
 function addOrganization($name,$email,$phone,$address,$type)
 {
-
     global $conn;
-
 
     $stmt=mysqli_prepare(
         $conn,
 
         "INSERT INTO organizations
-        (name,email,phone,address,type,status)
+        (organization_name,email,phone,address,status)
 
         VALUES
-        (?,?,?,?,?,'Pending')"
+        (?,?,?,?, 'Pending')"
     );
 
 
     mysqli_stmt_bind_param(
         $stmt,
-        "sssss",
+        "ssss",
         $name,
         $email,
         $phone,
-        $address,
-        $type
+        $address
     );
 
 
@@ -86,13 +75,10 @@ function addOrganization($name,$email,$phone,$address,$type)
 
 
 
-
 // Update organization
-
 
 function updateOrganization($id,$name,$email,$phone,$address,$type)
 {
-
     global $conn;
 
 
@@ -101,26 +87,24 @@ function updateOrganization($id,$name,$email,$phone,$address,$type)
 
         "UPDATE organizations SET
 
-        name=?,
+        organization_name=?,
         email=?,
         phone=?,
-        address=?,
-        type=?
+        address=?
 
-        WHERE id=?"
+        WHERE organization_id=?"
 
     );
 
 
     mysqli_stmt_bind_param(
         $stmt,
-        "sssssi",
+        "ssssi",
 
         $name,
         $email,
         $phone,
         $address,
-        $type,
         $id
     );
 
@@ -134,16 +118,14 @@ function updateOrganization($id,$name,$email,$phone,$address,$type)
 
 // Delete organization
 
-
 function deleteOrganization($id)
 {
-
     global $conn;
 
 
     $stmt=mysqli_prepare(
         $conn,
-        "DELETE FROM organizations WHERE id=?"
+        "DELETE FROM organizations WHERE organization_id=?"
     );
 
 
@@ -158,20 +140,20 @@ function deleteOrganization($id)
 
 }
 
-// Update organization status
 
+// Update organization status
 
 function updateOrganizationStatus($id,$status)
 {
-
     global $conn;
 
 
     $stmt=mysqli_prepare(
         $conn,
-        "UPDATE organizations 
-         SET status=? 
-         WHERE id=?"
+
+        "UPDATE organizations
+         SET status=?
+         WHERE organization_id=?"
     );
 
 
@@ -186,6 +168,5 @@ function updateOrganizationStatus($id,$status)
     return mysqli_stmt_execute($stmt);
 
 }
-
 
 ?>

@@ -36,80 +36,113 @@
 <div class="organization-dashboard">
 
 
-    <!-- =========================
-         WELCOME
-    ========================= -->
+<!-- =========================
+     HEADER / LOGOUT
+========================= -->
 
-    <div class="org-welcome">
+<div class="org-header">
 
-        <h1>
-
-            Welcome,
-
-            <?php
-
-            echo htmlspecialchars(
-                $_SESSION["organization_name"]
-                ?? "Organization"
-            );
-
-            ?>
-
-        </h1>
+    <h2>
+        🚑 Emergency Help Hub
+    </h2>
 
 
-        <p>
+    <a href="../../controller/organization/logout.php">
+        Logout
+    </a>
 
-            Manage your organization,
-            providers,
-            emergency services,
-            funds,
-            reviews and reports
-            from one place.
 
-        </p>
-
-    </div>
+</div>
 
 
 
-    <!-- =========================
-         QUICK NAVIGATION
-    ========================= -->
-
-    <div class="quick-nav">
-
-        <h3>
-            Quick Navigation
-        </h3>
+<!-- =========================
+     WELCOME
+========================= -->
 
 
-        <a href="#services">
-            Emergency Services
-        </a>
+<div class="org-welcome">
 
 
-        <a href="#providers">
-            Manage Providers
-        </a>
+    <h1>
+
+        Welcome,
+
+        <?php
+
+        echo htmlspecialchars(
+            $_SESSION["organization_name"] ?? "Organization"
+        );
+
+        ?>
+
+    </h1>
 
 
-        <a href="#funds">
-            Fund / Donation
-        </a>
+
+    <p>
+
+        Manage your organization,
+        providers,
+        emergency services,
+        funds,
+        reviews and reports
+        from one place.
+
+    </p>
 
 
-        <a href="#reviews">
-            Ratings & Reviews
-        </a>
+</div>
 
 
-        <a href="#report">
-            Organization Report
-        </a>
 
 
-    </div>
+
+<!-- =========================
+     QUICK NAVIGATION
+========================= -->
+
+
+<div class="quick-nav">
+
+
+    <h3>
+        Quick Navigation
+    </h3>
+
+
+
+    <a href="#services">
+        Emergency Services
+    </a>
+
+
+
+    <a href="#providers">
+        Manage Providers
+    </a>
+
+
+
+    <a href="#funds">
+        Fund / Donation
+    </a>
+
+
+
+    <a href="#reviews">
+        Ratings & Reviews
+    </a>
+
+
+
+    <a href="#report">
+        Organization Report
+    </a>
+
+
+
+</div>
 
 
 

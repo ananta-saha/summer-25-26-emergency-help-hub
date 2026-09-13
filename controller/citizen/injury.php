@@ -4,17 +4,20 @@ session_start();
 
 require_once __DIR__ . "/../../model/citizen/CitizenModel.php";
 
+
 if(!isset($_SESSION["citizen_id"]))
 {
     header("Location: ../auth/login.php");
     exit();
 }
 
+
 if(!isset($_SESSION["emergency_request"]))
 {
     header("Location: emergency-request.php");
     exit();
 }
+
 
 
 $error = "";
@@ -24,8 +27,10 @@ $injuryLevel = "";
 $injuryDescription = "";
 
 
+
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
+
     $injury = $_POST["injury"] ?? "No";
 
     $injuryLevel = $_POST["injuryLevel"] ?? "";
@@ -33,35 +38,51 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $injuryDescription = $_POST["injuryDescription"] ?? "";
 
 
+
     $request = $_SESSION["emergency_request"];
+
+
 
 
     if($injury == "Yes" && $injuryLevel == "")
     {
         $error = "Please select injury level.";
     }
+
+
     else
     {
 
+
         $wheelchairRequired = 0;
+
         $wheelchairCount = 0;
+
 
 
         if(isset($_SESSION["wheelchair"]) && $_SESSION["wheelchair"] == "Yes")
         {
+
             $wheelchairRequired = 1;
+
             $wheelchairCount = $_SESSION["wheelchairNumber"];
+
         }
+
 
 
 
         $injuryPresent = 0;
 
 
+
         if($injury == "Yes")
         {
+
             $injuryPresent = 1;
+
         }
+
 
 
 
@@ -81,6 +102,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
             $request["location"],
 
+            $request["latitude"],
+
+            $request["longitude"],
+
             $request["details"],
 
             $wheelchairRequired,
@@ -97,10 +122,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
+
+
         if($saveResult["success"])
         {
 
+
             $_SESSION["request_id"] = $saveResult["request_id"];
+
 
 
             unset($_SESSION["emergency_request"]);
@@ -111,14 +140,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
+
             header("Location: request-status.php");
 
             exit();
 
         }
+
+
         else
         {
+
             $error = $saveResult["error"];
+
         }
 
     }
@@ -126,6 +160,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 }
 
 
+
 require_once __DIR__ . "/../../view/citizen/injury.php";
+
 
 ?>

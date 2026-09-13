@@ -8,11 +8,76 @@
     box-sizing: border-box;
 }
 
+
+/* =========================
+   DASHBOARD CONTAINER
+========================= */
+
 .organization-dashboard {
+
     width: 90%;
     max-width: 1200px;
+
     margin: 0 auto;
+
     padding: 40px 0 60px;
+
+}
+
+
+/* =========================
+   LOGOUT HEADER
+========================= */
+
+.org-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px 40px;
+
+    background: #243b8f;
+
+    border-radius: 12px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.org-header h2 {
+
+    color: white;
+
+    margin: 0;
+
+}
+
+
+.org-header a {
+
+    background: white;
+
+    color: #243b8f;
+
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+}
+
+
+.org-header a:hover {
+
+    background: #eee;
+
 }
 
 
@@ -21,19 +86,31 @@
 ========================= */
 
 .org-welcome {
+
     padding: 30px;
+
     margin-bottom: 25px;
+
 }
+
 
 .org-welcome h1 {
+
     color: #030b17;
+
     font-size: 32px;
+
     margin-bottom: 10px;
+
 }
 
+
 .org-welcome p {
+
     color: #676363;
+
     font-size: 17px;
+
 }
 
 
@@ -42,50 +119,73 @@
 ========================= */
 
 .quick-nav {
+
     background-color: white;
+
     padding: 20px 25px;
+
     border-radius: 12px;
+
     margin-bottom: 30px;
 
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 12px;
 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
 }
+
 
 .quick-nav h3 {
+
     width: 100%;
+
     color: #2a3a8f;
+
     margin-bottom: 8px;
+
 }
 
+
 .quick-nav a {
+
     background-color: #2a3a8f;
+
     color: white;
 
     padding: 10px 16px;
 
     text-decoration: none;
+
     border-radius: 6px;
 
     font-weight: bold;
 
     transition: 0.3s;
+
 }
 
+
 .quick-nav a:hover {
+
     background-color: #c06c64;
+
     transform: translateY(-3px);
+
 }
 
 
 /* =========================
-   SUCCESS & ERROR MESSAGE
+   MESSAGE
 ========================= */
 
 .error-message {
+
     background-color: #fee2e2;
+
     color: #b02a37;
 
     padding: 15px 20px;
@@ -95,10 +195,14 @@
     border-radius: 8px;
 
     margin-bottom: 20px;
+
 }
 
+
 .success-message {
+
     background-color: #e7f5ea;
+
     color: #1e7e34;
 
     padding: 15px 20px;
@@ -108,6 +212,7 @@
     border-radius: 8px;
 
     margin-bottom: 20px;
+
 }
 
 
@@ -116,6 +221,7 @@
 ========================= */
 
 .org-section {
+
     background-color: white;
 
     padding: 30px;
@@ -125,9 +231,12 @@
     margin-bottom: 30px;
 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
 }
 
+
 .org-section h2 {
+
     color: #2a3a8f;
 
     margin-bottom: 25px;
@@ -135,11 +244,16 @@
     padding-bottom: 12px;
 
     border-bottom: 2px solid #ebe9e4;
+
 }
 
+
 .org-section h3 {
+
     color: #333;
+
     margin: 25px 0 15px;
+
 }
 
 
@@ -148,13 +262,20 @@
 ========================= */
 
 .org-statistics {
+
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 20px;
+
 }
 
+
 .org-stat-card {
+
     flex: 1;
+
     min-width: 200px;
 
     background-color: #f5f3ee;
@@ -168,36 +289,42 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
     transition: 0.3s;
+
 }
+
 
 .org-stat-card:hover {
+
     transform: translateY(-5px);
+
 }
 
+
 .org-stat-card h3 {
-    margin: 0 0 10px;
 
     color: #2a3a8f;
 
-    font-size: 17px;
 }
 
+
 .org-stat-card p {
+
     font-size: 25px;
 
     font-weight: bold;
 
     color: #030b17;
+
 }
 
 
 /* =========================
-   ORGANIZATION FORM
+   FORM
 ========================= */
 
 .org-section form {
+
     width: 100%;
-    max-width: none;
 
     background-color: #fafaf8;
 
@@ -207,12 +334,11 @@
 
     padding: 30px;
 
-    box-shadow: none;
-
-    text-align: left;
 }
 
+
 .org-section label {
+
     display: block;
 
     margin-bottom: 7px;
@@ -220,32 +346,37 @@
     font-weight: bold;
 
     color: #2b3a4f;
+
 }
+
 
 .org-section input,
 .org-section select,
 .org-section textarea {
+
     width: 100%;
 
     padding: 12px;
 
-    border: 1px solid #dddddd;
+    border: 1px solid #ddd;
 
     border-radius: 8px;
 
     font-size: 15px;
 
-    font-family: inherit;
-
     margin-bottom: 18px;
 
-    outline: none;
 }
+
 
 .org-section input:focus,
 .org-section select:focus,
 .org-section textarea:focus {
+
     border-color: #2a3a8f;
+
+    outline: none;
+
 }
 
 
@@ -254,6 +385,7 @@
 ========================= */
 
 .org-btn {
+
     background-color: #2a3a8f;
 
     color: white;
@@ -266,19 +398,17 @@
 
     font-size: 15px;
 
-    font-family: inherit;
-
     font-weight: bold;
 
     cursor: pointer;
 
-    transition: 0.3s;
 }
 
+
 .org-btn:hover {
+
     background-color: #c06c64;
 
-    transform: scale(1.03);
 }
 
 
@@ -287,35 +417,42 @@
 ========================= */
 
 .org-table {
+
     width: 100%;
 
     border-collapse: collapse;
 
     margin-top: 20px;
 
-    background-color: white;
 }
 
+
 .org-table th {
-    background-color: #2a3a8f;
+
+    background: #2a3a8f;
 
     color: white;
 
     padding: 14px;
 
     text-align: left;
+
 }
 
+
 .org-table td {
+
     padding: 13px;
 
     border-bottom: 1px solid #ddd;
 
-    color: #333;
 }
 
+
 .org-table tr:hover {
-    background-color: #f5f3ee;
+
+    background: #f5f3ee;
+
 }
 
 
@@ -324,7 +461,8 @@
 ========================= */
 
 .org-delete-btn {
-    background-color: #dc3545;
+
+    background: #dc3545;
 
     color: white;
 
@@ -334,36 +472,38 @@
 
     text-decoration: none;
 
-    font-size: 14px;
-
-    transition: 0.3s;
 }
 
+
 .org-delete-btn:hover {
-    background-color: #b02a37;
+
+    background: #b02a37;
+
 }
 
 
 /* =========================
-   REVIEW SECTION
+   REVIEWS
 ========================= */
 
 .org-review-summary {
+
     display: flex;
 
     gap: 20px;
 
     flex-wrap: wrap;
 
-    margin-bottom: 25px;
 }
 
+
 .org-review-card {
+
     flex: 1;
 
     min-width: 200px;
 
-    background-color: #f5f3ee;
+    background: #f5f3ee;
 
     padding: 25px;
 
@@ -373,19 +513,22 @@
 
     border-left: 5px solid #c06c64;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+
 
 .org-review-card h3 {
+
     color: #2a3a8f;
 
-    margin-bottom: 12px;
 }
 
+
 .org-review-card p {
+
     font-size: 26px;
 
     font-weight: bold;
+
 }
 
 
@@ -394,25 +537,24 @@
 ========================= */
 
 .org-report-box {
-    background-color: #f5f3ee;
+
+    background: #f5f3ee;
 
     padding: 25px;
 
     border-radius: 10px;
 
     border-left: 6px solid #c06c64;
+
 }
 
+
 .org-report-box p {
+
     padding: 12px 0;
 
     border-bottom: 1px solid #ddd;
 
-    font-size: 17px;
-}
-
-.org-report-box p:last-child {
-    border-bottom: none;
 }
 
 
@@ -421,56 +563,88 @@
 ========================= */
 
 .org-section>p {
+
     color: #676363;
+
     padding: 15px 0;
+
 }
 
 
 /* =========================
-   RESPONSIVE DESIGN
+   RESPONSIVE
 ========================= */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width:768px) {
+
 
     .organization-dashboard {
+
         width: 94%;
-        padding-top: 25px;
+
     }
 
-    .org-welcome {
-        padding: 15px;
+
+    .org-header {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+
     }
 
-    .org-welcome h1 {
-        font-size: 25px;
+
+    .org-header a {
+
+        width: 100%;
+
+        text-align: center;
+
     }
+
 
     .org-section {
+
         padding: 20px;
+
     }
+
 
     .org-statistics {
+
         flex-direction: column;
+
     }
+
 
     .org-review-summary {
+
         flex-direction: column;
+
     }
+
 
     .quick-nav {
+
         flex-direction: column;
+
     }
+
 
     .quick-nav a {
+
         text-align: center;
+
     }
+
 
     .org-table {
+
         font-size: 13px;
+
     }
 
-    .org-table th,
-    .org-table td {
-        padding: 8px;
-    }
+
 }

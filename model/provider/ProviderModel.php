@@ -55,8 +55,6 @@ function getProviderProfile($providerId)
 
 
 
-
-
 function getProviderEmergencyRequests($providerId)
 {
     global $conn;
@@ -69,6 +67,7 @@ function getProviderEmergencyRequests($providerId)
 
             request_id,
             citizen_id,
+            provider_id,
 
             service_type,
             emergency_type,
@@ -133,57 +132,71 @@ function getProviderEmergencyRequests($providerId)
 }
 
 
-
-
-
-
-
-function updateRequestStatus($requestId, $status)
+function updateRequestStatus($requestId, $status, $providerId)
 {
     global $conn;
 
 
     if($status == "Accepted")
     {
+
         $query =
 
         "UPDATE emergency_requests
 
         SET
+
             status = ?,
+
             accepted_at = NOW(),
+
             updated_at = NOW()
 
-        WHERE request_id = ?";
+        WHERE request_id = ?
+
+        AND provider_id = ?
+
+        AND status = 'Pending'";
     }
 
 
     elseif($status == "Completed")
     {
+
         $query =
 
         "UPDATE emergency_requests
 
         SET
+
             status = ?,
+
             completed_at = NOW(),
+
             updated_at = NOW()
 
-        WHERE request_id = ?";
+        WHERE request_id = ?
+
+        AND provider_id = ?";
     }
 
 
     else
     {
+
         $query =
 
         "UPDATE emergency_requests
 
         SET
+
             status = ?,
+
             updated_at = NOW()
 
-        WHERE request_id = ?";
+        WHERE request_id = ?
+
+        AND provider_id = ?";
     }
 
 
@@ -196,21 +209,24 @@ function updateRequestStatus($requestId, $status)
 
     mysqli_stmt_bind_param(
         $stmt,
-        "si",
+        "sii",
         $status,
-        $requestId
+        $requestId,
+        $providerId
     );
+
 
 
     $result = mysqli_stmt_execute($stmt);
 
 
+
     mysqli_stmt_close($stmt);
+
 
 
     return $result;
 }
-
 
 
 
@@ -252,14 +268,6 @@ function updateProviderAvailability($providerId, $availability)
 
     return $result;
 }
-
-
-
-
-
-
-
-
 function getProviderRequestCount($providerId)
 {
     global $conn;
@@ -297,7 +305,6 @@ function getProviderRequestCount($providerId)
 
     return $data["total"];
 }
-
 
 
 
@@ -345,5 +352,7 @@ function getProviderStatusCount($providerId, $status)
 
     return $data["total"];
 }
+
+
 
 ?>

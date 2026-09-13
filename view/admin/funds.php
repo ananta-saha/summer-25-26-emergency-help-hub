@@ -2,7 +2,6 @@
 
 session_start();
 
-
 require_once "../../model/admin/FundModel.php";
 
 
@@ -14,7 +13,6 @@ if(!isset($_SESSION["admin_id"]))
 
 
 $funds = getAllFunds();
-
 
 ?>
 
@@ -46,13 +44,13 @@ onkeyup="searchTable()">
 
 <th>ID</th>
 
-<th>Organization</th>
+<th>Organization ID</th>
 
 <th>Amount</th>
 
 <th>Purpose</th>
 
-<th>Request Date</th>
+<th>Donation Date</th>
 
 <th>Status</th>
 
@@ -75,7 +73,7 @@ onkeyup="searchTable()">
 
 <td>
 
-<?= $row["id"] ?>
+<?= $row["donation_id"] ?>
 
 </td>
 
@@ -83,7 +81,7 @@ onkeyup="searchTable()">
 
 <td>
 
-<?= $row["organization"] ?>
+<?= $row["organization_id"] ?>
 
 </td>
 
@@ -107,7 +105,7 @@ onkeyup="searchTable()">
 
 <td>
 
-<?= $row["request_date"] ?>
+<?= $row["donation_date"] ?>
 
 </td>
 
@@ -127,7 +125,7 @@ onkeyup="searchTable()">
 
 
 <a 
-href="../../controller/admin/FundController.php?delete=<?= $row["id"] ?>"
+href="../../controller/admin/FundController.php?delete=<?= $row["donation_id"] ?>"
 onclick="return confirm('Delete this fund request?')">
 
 
@@ -150,7 +148,7 @@ Delete
 
 
 
-<a href="../../controller/admin/FundController.php?id=<?= $row["id"] ?>&status=Approved">
+<a href="../../controller/admin/FundController.php?id=<?= $row["donation_id"] ?>&status=Approved">
 
 
 <button>
@@ -166,7 +164,7 @@ Approve
 
 
 
-<a href="../../controller/admin/FundController.php?id=<?= $row["id"] ?>&status=Rejected">
+<a href="../../controller/admin/FundController.php?id=<?= $row["donation_id"] ?>&status=Rejected">
 
 
 <button>

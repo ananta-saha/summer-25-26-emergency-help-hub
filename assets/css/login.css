@@ -152,3 +152,334 @@ button:hover {
     text-align: center;
 
 }
+
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background: linear-gradient(135deg,
+            #0f172a,
+            #2563eb);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+
+/* Main Container */
+
+.login-container {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+}
+
+
+
+/* Login / Signup Card */
+
+.login-card {
+
+    width: 380px;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+/* Main Title */
+
+.login-card h1 {
+
+    text-align: center;
+
+    color: #2563eb;
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+
+}
+
+
+
+/* Subtitle */
+
+.login-card h2 {
+
+    text-align: center;
+
+    color: #333;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+/* Labels */
+
+label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 6px;
+
+    font-weight: bold;
+
+    color: #222;
+
+}
+
+
+
+/* Inputs */
+
+input,
+select,
+textarea {
+
+
+    width: 100%;
+
+
+    padding: 12px;
+
+
+    border-radius: 8px;
+
+
+    border: 1px solid #ccc;
+
+
+    font-size: 15px;
+
+
+    font-family: Arial, sans-serif;
+
+}
+
+
+
+/* Textarea */
+
+textarea {
+
+    resize: none;
+
+    height: 80px;
+
+}
+
+
+
+/* Focus */
+
+input:focus,
+select:focus,
+textarea:focus {
+
+
+    outline: none;
+
+
+    border-color: #2563eb;
+
+
+    box-shadow:
+        0 0 5px rgba(37, 99, 235, 0.4);
+
+}
+
+
+
+/* Button */
+
+button {
+
+
+    width: 100%;
+
+
+    margin-top: 25px;
+
+
+    padding: 12px;
+
+
+    border: none;
+
+
+    border-radius: 8px;
+
+
+    background: #2563eb;
+
+
+    color: white;
+
+
+    font-size: 16px;
+
+
+    font-weight: bold;
+
+
+    cursor: pointer;
+
+}
+
+
+
+button:hover {
+
+
+    background: #1d4ed8;
+
+}
+
+
+
+/* Error Message */
+
+.error {
+
+
+    background: #fee2e2;
+
+
+    color: #dc2626;
+
+
+    padding: 10px;
+
+
+    border-radius: 8px;
+
+
+    text-align: center;
+
+
+    margin-bottom: 15px;
+
+
+    font-weight: bold;
+
+}
+
+
+
+/* Signup/Login Link */
+
+.signup-link {
+
+
+    text-align: center;
+
+
+    margin-top: 20px;
+
+}
+
+
+
+.signup-link p {
+
+
+    margin-bottom: 5px;
+
+}
+
+
+
+.signup-link a {
+
+
+    color: #2563eb;
+
+
+    text-decoration: none;
+
+
+    font-weight: bold;
+
+}
+
+
+
+.signup-link a:hover {
+
+
+    text-decoration: underline;
+
+}
+
+
+
+/* Mobile Responsive */
+
+@media(max-width:450px) {
+
+
+    .login-card {
+
+
+        width: 100%;
+
+
+        padding: 25px;
+
+
+    }
+
+
+    .login-card h1 {
+
+
+        font-size: 24px;
+
+    }
+
+
+}
+
+.signup-link a {
+    text-decoration: none;
+    font-weight: bold;
+}
