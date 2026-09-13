@@ -26,177 +26,7 @@ This project focuses on developing a secure, centralized, role-based web applica
 
 ## ER Diagram
 
-![ER Diagram](assets/documentation/er-diagram.png)
-
----
-
-# Database Normalization
-
-## 1. Citizens → Emergency Requests
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`citizen_id, name, phone, request_id, service_type, status`
-
-**1NF:** No multivalued attributes
-
-`citizen_id, name, phone, request_id, service_type, status`
-
----
-
-## 2. Service Providers → Emergency Requests
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`provider_id, provider_name, service_type, request_id, service_type, status`
-
-**1NF:** No multivalued attributes
-
-`provider_id, provider_name, service_type, request_id, status`
-
----
-
-## 3. Service Providers → Provider Availability
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`provider_id, provider_name, service_type, availability_id, availability_status`
-
-**1NF:** No multivalued attributes
-
-`provider_id, provider_name, service_type, availability_id, availability_status`
-
----
-
-## 4. Service Providers → Service Areas
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`provider_id, provider_name, service_type, area_id, base_area, covered_areas`
-
-**1NF:** Multivalued Attribute: `covered_areas`
-
-`provider_id, provider_name, service_type, area_id, base_area, area_name`
-
----
-
-## 5. Organizations → Organization Providers
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`organization_id, organization_name, status, organization_provider_id, provider_name`
-
-**1NF:** No multivalued attributes
-
-`organization_id, organization_name, status, organization_provider_id, provider_name`
-
----
-
-## 6. Organizations → Organization Services
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`organization_id, organization_name, status, service_id, service_name`
-
-**1NF:** No multivalued attributes
-
-`organization_id, organization_name, status, service_id, service_name`
-
----
-
-## 7. Organizations → Organization Donations
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`organization_id, organization_name, status, donation_id, amount`
-
-**1NF:** No multivalued attributes
-
-`organization_id, organization_name, status, donation_id, amount`
-
----
-
-## 8. Citizens → Organization Reviews
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`citizen_id, name, phone, review_id, rating`
-
-**1NF:** No multivalued attributes
-
-`citizen_id, name, phone, review_id, rating`
-
----
-
-## 9. Organization Providers → Organization Reviews
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`organization_provider_id, provider_name, review_id, rating`
-
-**1NF:** No multivalued attributes
-
-`organization_provider_id, provider_name, review_id, rating`
-
----
-
-## 10. Organizations → Organization Reviews
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`organization_id, organization_name, status, review_id, rating`
-
-**1NF:** No multivalued attributes
-
-`organization_id, organization_name, status, review_id, rating`
-
----
-
-## 11. Admin → Emergency Requests
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`admin_id, name, request_id, citizen_id, service_type, status`
-
-**1NF:** No multivalued attributes
-
-`admin_id, name, request_id, citizen_id, service_type, status`
-
----
-
-## 12. Admin → Organization Donations
-
-**Relation:** One-to-Many
-
-**UNF:**
-
-`admin_id, name, donation_id, organization_id, amount`
-
-**1NF:** No multivalued attributes
-
-`admin_id, name, donation_id, organization_id, amount`
+<img width="1004" height="650" alt="image" src="https://github.com/user-attachments/assets/3a56f352-9d94-466c-ab86-4a2c0a518fc1" />
 
 ---
 
@@ -244,10 +74,7 @@ This project focuses on developing a secure, centralized, role-based web applica
 ---
 
 # Use Case Diagram
-
-![Use Case Diagram 1](assets/documentation/use-case-diagram-1.png)
-
-![Use Case Diagram 2](assets/documentation/use-case-diagram-2.png)
+<img width="1038" height="771" alt="image" src="https://github.com/user-attachments/assets/18a4f2dc-53cf-4558-b7d6-9a9da00f05f7" />
 
 ---
 
@@ -255,13 +82,12 @@ This project focuses on developing a secure, centralized, role-based web applica
 
 The user interface was designed to provide a simple, accessible, and role-based experience for all system users.
 
-![UI Design 1](assets/documentation/ui-1.png)
-
-![UI Design 2](assets/documentation/ui-2.png)
-
-![UI Design 3](assets/documentation/ui-3.png)
-
-![UI Design 4](assets/documentation/ui-4.png)
+<img width="349" height="419" alt="image" src="https://github.com/user-attachments/assets/a61832a9-a260-4540-9468-050983b073d3" />
+<img width="310" height="419" alt="image" src="https://github.com/user-attachments/assets/76b1667f-0b24-4834-bb45-bd62fea74fd0" />
+<img width="635" height="294" alt="image" src="https://github.com/user-attachments/assets/014db61c-2867-4f92-ba87-fc9c4578ac07" />
+<img width="653" height="331" alt="image" src="https://github.com/user-attachments/assets/44847851-0dbc-401d-a4f8-3e0a6a7a0dbc" />
+<img width="635" height="292" alt="image" src="https://github.com/user-attachments/assets/e51d8dae-0914-4845-96a8-4c5634beaf3a" />
+<img width="636" height="313" alt="image" src="https://github.com/user-attachments/assets/1899b251-f4aa-496c-a738-729fa497fffb" />
 
 ---
 
