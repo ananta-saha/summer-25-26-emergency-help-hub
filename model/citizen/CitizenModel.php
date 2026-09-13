@@ -133,9 +133,8 @@ function searchEmergencyServices($serviceType, $latitude, $longitude)
 |--------------------------------------------------------------------------
 */
 
-function findNearestProvider($serviceType,$latitude,$longitude)
+function findAvailableProviders($serviceType,$latitude,$longitude)
 {
-
     global $conn;
 
 
@@ -143,10 +142,11 @@ function findNearestProvider($serviceType,$latitude,$longitude)
 
         $conn,
 
-
         "SELECT
 
             provider_id,
+
+            provider_name,
 
 
             (
@@ -186,13 +186,9 @@ function findNearestProvider($serviceType,$latitude,$longitude)
         HAVING distance <= 50
 
 
-        ORDER BY distance ASC
-
-
-        LIMIT 1"
+        ORDER BY distance ASC"
 
     );
-
 
 
     mysqli_stmt_bind_param(
@@ -202,44 +198,33 @@ function findNearestProvider($serviceType,$latitude,$longitude)
         "ddds",
 
         $latitude,
-
         $longitude,
-
         $latitude,
-
         $serviceType
 
     );
 
 
-
     mysqli_stmt_execute($stmt);
-
 
 
     $result = mysqli_stmt_get_result($stmt);
 
 
+    $providers=[];
 
-    $provider = mysqli_fetch_assoc($result);
 
+    while($row=mysqli_fetch_assoc($result))
+    {
+        $providers[]=$row;
+    }
 
 
     mysqli_stmt_close($stmt);
 
 
-
-    if($provider)
-    {
-        return $provider["provider_id"];
-    }
-
-
-    return false;
-
+    return $providers;
 }
-
-
 
 
 
@@ -547,6 +532,195 @@ function cancelEmergencyRequest($requestId,$citizenId)
     return $result;
 
 }
+/*
+|--------------------------------------------------------------------------
+| Get Citizen Profile
+|--------------------------------------------------------------------------
+*/
 
+function findCitizenProfile($citizenId)
+{
+    global $conn;
+
+
+    $stmt = mysqli_prepare(
+        $conn,
+
+        "SELECT
+
+            citizen_id,
+            name,
+            email,
+            phone,
+            address
+
+        FROM citizens
+
+        WHERE citizen_id = ?
+
+        LIMIT 1"
+    );
+
+
+    if(!$stmt)
+    {
+        return false;
+    }
+
+
+
+    mysqli_stmt_bind_param(
+        $stmt,
+        "i",
+        $citizenId
+    );
+
+
+
+    mysqli_stmt_execute($stmt);
+
+
+
+    $result = mysqli_stmt_get_result($stmt);
+
+
+
+    if(!$result)
+    {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+
+
+
+    $profile = mysqli_fetch_assoc($result);
+
+
+
+    mysqli_stmt_close($stmt);
+
+
+
+    return $profile;
+}
+
+
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Update Citizen Profile
+|--------------------------------------------------------------------------
+*/
+
+
+function updateCitizenProfile(
+    $citizenId,
+    $name,
+    $email,
+    $phone,
+    $address
+)
+{
+
+    global $conn;
+
+
+
+    $stmt = mysqli_prepare(
+        $conn,
+
+
+        "UPDATE citizens
+
+        SET
+
+            name = ?,
+            email = ?,
+            phone = ?,
+            address = ?
+
+        WHERE citizen_id = ?"
+
+    );
+
+
+
+    if(!$stmt)
+    {
+
+        return [
+
+            "success"=>false,
+
+            "error"=>mysqli_error($conn)
+
+        ];
+
+    }
+
+
+
+
+    mysqli_stmt_bind_param(
+        $stmt,
+
+        "ssssi",
+
+        $name,
+
+        $email,
+
+        $phone,
+
+        $address,
+
+        $citizenId
+    );
+
+
+
+
+
+    if(mysqli_stmt_execute($stmt))
+    {
+
+        mysqli_stmt_close($stmt);
+
+
+
+        return [
+
+            "success"=>true,
+
+            "error"=>""
+
+        ];
+
+    }
+
+
+
+
+
+    $error = mysqli_error($conn);
+
+
+
+    mysqli_stmt_close($stmt);
+
+
+
+    return [
+
+        "success"=>false,
+
+        "error"=>$error
+
+    ];
+
+}
 
 ?>

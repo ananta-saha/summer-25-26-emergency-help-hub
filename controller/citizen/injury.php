@@ -43,7 +43,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
-
     if($injury == "Yes" && $injuryLevel == "")
     {
         $error = "Please select injury level.";
@@ -60,7 +59,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
-        if(isset($_SESSION["wheelchair"]) && $_SESSION["wheelchair"] == "Yes")
+        if(
+            isset($_SESSION["wheelchair"]) 
+            && 
+            $_SESSION["wheelchair"] == "Yes"
+        )
         {
 
             $wheelchairRequired = 1;
@@ -86,49 +89,84 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
-        $saveResult = saveEmergencyRequest(
+        /*
+            Save request for all available providers
+        */
 
-            $_SESSION["citizen_id"],
 
-            $request["provider_id"],
+        $saveSuccess = false;
 
-            $request["service_type"],
-
-            $request["emergency_type"],
-
-            $request["people_count"],
-
-            $request["vehicles_requested"],
-
-            $request["location"],
-
-            $request["latitude"],
-
-            $request["longitude"],
-
-            $request["details"],
-
-            $wheelchairRequired,
-
-            $wheelchairCount,
-
-            $injuryPresent,
-
-            $injuryLevel,
-
-            $injuryDescription
-
-        );
+        $firstRequestId = null;
 
 
 
-
-
-        if($saveResult["success"])
+        foreach($request["providers"] ?? [] as $provider)
         {
 
 
-            $_SESSION["request_id"] = $saveResult["request_id"];
+            $saveResult = saveEmergencyRequest(
+
+                $_SESSION["citizen_id"],
+
+                $provider["provider_id"],
+
+                $request["service_type"],
+
+                $request["emergency_type"],
+
+                $request["people_count"],
+
+                $request["vehicles_requested"],
+
+                $request["location"],
+
+                $request["latitude"],
+
+                $request["longitude"],
+
+                $request["details"],
+
+                $wheelchairRequired,
+
+                $wheelchairCount,
+
+                $injuryPresent,
+
+                $injuryLevel,
+
+                $injuryDescription
+
+            );
+
+
+
+
+            if($saveResult["success"])
+            {
+
+                $saveSuccess = true;
+
+
+
+                if($firstRequestId == null)
+                {
+                    $firstRequestId = $saveResult["request_id"];
+                }
+
+            }
+
+
+        }
+
+
+
+
+
+        if($saveSuccess)
+        {
+
+
+            $_SESSION["request_id"] = $firstRequestId;
 
 
 
@@ -151,7 +189,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         else
         {
 
-            $error = $saveResult["error"];
+            $error = "Failed to create emergency request.";
 
         }
 

@@ -49,8 +49,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $details = trim($_POST["details"] ?? "");
 
 
-    // GPS DATA
-
     $latitude = trim($_POST["latitude"] ?? "");
 
     $longitude = trim($_POST["longitude"] ?? "");
@@ -91,11 +89,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     else
     {
 
+
         /*
-        Find nearest provider within range
+        Find ALL available providers
         */
 
-        $providerId = findNearestProvider(
+        $providers = findAvailableProviders(
             $emService,
             $latitude,
             $longitude
@@ -103,17 +102,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
-        if(!$providerId)
+        if(count($providers)==0)
         {
             $error = "No available provider found within your area.";
         }
 
+
         else
         {
 
+
+            /*
+            Save provider IDs temporarily
+            */
+
             $_SESSION["emergency_request"] = [
 
-                "provider_id" => $providerId,
+                "providers" => $providers,
 
                 "service_type" => $emService,
 
@@ -131,9 +136,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
                 "details" => $details,
 
+
                 "wheelchair_required" => 0,
 
                 "wheelchair_count" => 0,
+
 
                 "injury_present" => 0,
 
@@ -142,6 +149,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 "injury_description" => ""
 
             ];
+
 
 
             header("Location: wheelchair.php");
