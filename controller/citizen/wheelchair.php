@@ -5,6 +5,7 @@ session_start();
 require_once __DIR__ . "/../../model/citizen/CitizenModel.php";
 
 
+<<<<<<< HEAD
 /*
 |--------------------------------------------------------------------------
 | Check Citizen Login
@@ -17,6 +18,20 @@ if(!isset($_SESSION["citizen_id"]))
     exit();
 }
 
+=======
+if(!isset($_SESSION["citizen_id"]))
+{
+    header("Location: ../auth/login.php");
+    exit();
+}
+
+
+if(!isset($_SESSION["emergency_request"]))
+{
+    header("Location: emergency-request.php");
+    exit();
+}
+>>>>>>> origin/main
 
 
 $wheelchair = "No";
@@ -24,6 +39,7 @@ $wheelchairNumber = 0;
 $error = "";
 
 
+<<<<<<< HEAD
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +47,8 @@ $error = "";
 |--------------------------------------------------------------------------
 */
 
+=======
+>>>>>>> origin/main
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
 
@@ -39,6 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $wheelchairNumber = $_POST["wheelchairNumber"] ?? 0;
 
 
+<<<<<<< HEAD
 
     /*
     |--------------------------------------------------------------------------
@@ -46,6 +65,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     |--------------------------------------------------------------------------
     */
 
+=======
+>>>>>>> origin/main
     if($wheelchair == "Yes")
     {
 
@@ -61,9 +82,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION["wheelchairNumber"] = $wheelchairNumber;
 
 
+<<<<<<< HEAD
             header(
                 "Location: /summer-25-26-emergency-help-hub/controller/citizen/injury.php"
             );
+=======
+            header("Location: injury.php");
+>>>>>>> origin/main
 
             exit();
 
@@ -86,16 +111,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         $_SESSION["wheelchairNumber"] = 0;
 
 
+<<<<<<< HEAD
         header(
             "Location: /summer-25-26-emergency-help-hub/controller/citizen/injury.php"
         );
+=======
+        header("Location: injury.php");
+>>>>>>> origin/main
 
         exit();
 
     }
 
 }
-
 
 
 require_once __DIR__ . "/../../view/citizen/wheelchair.php";

@@ -17,14 +17,20 @@
 <body class="WheelchairHub">
 
 
+<<<<<<< HEAD
 <h2 class="early">
 Emergency Help Hub
 </h2>
 
 
+=======
+<h2 class="early">Emergency Help Hub</h2>
+>>>>>>> origin/main
+
 
 <main class="cntrs">
 
+<<<<<<< HEAD
 
 <h1>
 Injury Information
@@ -33,6 +39,13 @@ Injury Information
 
 
 <?php if(isset($error) && $error != ""): ?>
+=======
+
+<h1>Injury Information</h1>
+
+
+<?php if($error != ""): ?>
+>>>>>>> origin/main
 
 <p style="color:red;">
 <?= htmlspecialchars($error); ?>
@@ -56,9 +69,13 @@ Is there any injury?
 </p>
 
 
+<<<<<<< HEAD
 
 
 <input 
+=======
+<input
+>>>>>>> origin/main
 type="radio"
 id="injuryNo"
 name="injury"
@@ -73,9 +90,13 @@ No
 </label>
 
 
+<<<<<<< HEAD
 
 
 <input 
+=======
+<input
+>>>>>>> origin/main
 type="radio"
 id="injuryYes"
 name="injury"
@@ -111,6 +132,7 @@ Injury Level
 
 <select id="injuryLevel" name="injuryLevel">
 
+<<<<<<< HEAD
 
 <option value="">
 Select Injury Level
@@ -141,6 +163,25 @@ Severe
 
 <option value="Critical"
 <?= ($injuryLevel=="Critical") ? "selected" : ""; ?>>
+=======
+<option value="" <?= ($injuryLevel == "") ? "selected" : ""; ?>>
+Select Injury Level
+</option>
+
+<option value="Minor" <?= ($injuryLevel == "Minor") ? "selected" : ""; ?>>
+Minor
+</option>
+
+<option value="Moderate" <?= ($injuryLevel == "Moderate") ? "selected" : ""; ?>>
+Moderate
+</option>
+
+<option value="Severe" <?= ($injuryLevel == "Severe") ? "selected" : ""; ?>>
+Severe
+</option>
+
+<option value="Critical" <?= ($injuryLevel == "Critical") ? "selected" : ""; ?>>
+>>>>>>> origin/main
 Critical
 </option>
 
@@ -157,7 +198,10 @@ Injury Description
 </label>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 <textarea
 id="injuryDescription"
 name="injuryDescription"
@@ -199,9 +243,12 @@ Submit Information
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/main
 <footer>
 
 <p>
@@ -210,7 +257,9 @@ Submit Information
 
 </footer>
 
+<script>
 
+<<<<<<< HEAD
 
 
 
@@ -240,6 +289,32 @@ function hideInjury()
 
 
 
+=======
+const injuryYes = document.getElementById("injuryYes");
+const injuryNo = document.getElementById("injuryNo");
+
+const injuryDetails = document.querySelector(".injury-details-box");
+
+function showInjuryDetails()
+{
+    if(injuryYes.checked)
+    {
+        injuryDetails.style.display = "block";
+    }
+    else
+    {
+        injuryDetails.style.display = "none";
+    }
+}
+
+injuryYes.addEventListener("change", showInjuryDetails);
+
+injuryNo.addEventListener("change", showInjuryDetails);
+
+showInjuryDetails();
+
+</script>
+>>>>>>> origin/main
 </body>
 
 </html>
